@@ -69,7 +69,7 @@ router.delete('/:id', async( req: Request, res: Response ) => {
         const { id } = req.params;
         const foundProduct = await prisma.product.findUnique( { where : { id } } );
         if ( !foundProduct )
-            res.status( 404 ).json( { error: "Product not found." } );
+            return res.status( 404 ).json( { error: "Product not found." } );
         const deleteProduct = await prisma.product.delete( { where : { id } } );
         res.status( 200 ).json( deleteProduct );
     } catch (error) {
